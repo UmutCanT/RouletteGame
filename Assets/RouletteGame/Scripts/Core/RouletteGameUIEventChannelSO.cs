@@ -10,7 +10,7 @@ namespace RouletteGame.Core
     {
         public UnityEvent OnSpinClicked;
         public UnityEvent OnStartSpin;
-        public UnityEvent<string> OnRewardGranted;
+        public UnityEvent<RewardData> OnRewardGranted;
         public UnityEvent OnSpinFinished;
 
         public void RaiseOnSpinClicked()
@@ -23,9 +23,9 @@ namespace RouletteGame.Core
 
         }
 
-        public void RaiseOnRewardGranted()
+        public void RaiseOnRewardGranted(RewardData rewardData)
         {
-
+            OnRewardGranted?.Invoke(rewardData);
         }
 
         public void RaiseOnSpinFinished()

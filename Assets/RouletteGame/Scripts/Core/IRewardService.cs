@@ -7,6 +7,6 @@ namespace RouletteGame.Core
 {
     public interface IRewardService
     {
-        public Task SpinRequest(string playerId);
+        public Task<RewardData> SpinRequest(string playerId);
     }
 }
