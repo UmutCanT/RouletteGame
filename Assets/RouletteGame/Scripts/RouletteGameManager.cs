@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Test;
 using UnityEngine;
@@ -12,14 +13,28 @@ namespace RouletteGame.Manager
     {
         //eventChannels
         [SerializeField] private RouletteGameUIEventChannelSO rouletteGameUIEventChannel;
+        [SerializeField] private RouletteGameWrapperSO rouletteGameWrapper;
 
         private IRewardService rewardService;
         private bool isRouletteSpinning;
 
-        public void Initialize()
+        private CancellationTokenSource cancellationTokenSource;
+
+        public async void Initialize()
         {
             rewardService = ServiceLocator.Resolve<IRewardService>();
             rouletteGameUIEventChannel.OnSpinClicked.AddListener(OnSpinClicked);
+
+            try
+            {
+                Task<int> rewardLevelTask = rewardService.RewardLevelRequest("sadgsdg");
+                int rewardLevel = await rewardLevelTask;
+                rouletteGameUIEventChannel.RaiseOnRewardLevelReceived(rewardLevel);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Spin failed: {e}");
+            }
         }
 
         public async void OnSpinClicked()
@@ -43,6 +58,12 @@ namespace RouletteGame.Manager
             {
                 isRouletteSpinning = false;
             }
+        }
+
+        private void OnDisable()
+        {
+            cancellationTokenSource?.Cancel();
+            cancellationTokenSource?.Dispose();
         }
     }
 }

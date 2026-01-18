@@ -8,10 +8,17 @@ namespace RouletteGame.Core
     [CreateAssetMenu(fileName = "RouletteGameUIEventChannelSO", menuName = "Event Channel/Roulette Game UI ")]
     public class RouletteGameUIEventChannelSO : ScriptableObject
     {
+        public UnityEvent<int> OnRewardLevelReceived;
+
         public UnityEvent OnSpinClicked;
         public UnityEvent OnStartSpin;
         public UnityEvent<RewardData> OnRewardGranted;
         public UnityEvent OnSpinFinished;
+
+        public void RaiseOnRewardLevelReceived(int rewardLevel)
+        {
+            OnRewardLevelReceived?.Invoke(rewardLevel);
+        }
 
         public void RaiseOnSpinClicked()
         {
