@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,7 +13,7 @@ namespace RouletteGame.UI
         [SerializeField] private TextMeshProUGUI rewardAmountText;
         //[SerializeField] private GameObject specialBackground;
 
-        public void Initialize(Sprite rewardIconSprite, int rewardAmount)
+        public void UpdateRouletteElementUI(Sprite rewardIconSprite, int rewardAmount)
         {
             rewardIcon.sprite = rewardIconSprite;
 
@@ -21,6 +22,6 @@ namespace RouletteGame.UI
                 rewardAmountText.gameObject.SetActive(true);
                 rewardAmountText.text = $"x{rewardAmount}";
             }
-        }
+        }       
     }
 }
