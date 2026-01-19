@@ -18,22 +18,23 @@ namespace RouletteGame.Manager
         private IRewardService rewardService;
         private bool isRouletteSpinning;
 
+
         private CancellationTokenSource cancellationTokenSource;
 
-        public async void Initialize()
+        public async void Initialize(string playerID)
         {
             rewardService = ServiceLocator.Resolve<IRewardService>();
             rouletteGameUIEventChannel.OnSpinClicked.AddListener(OnSpinClicked);
 
             try
             {
-                Task<int> rewardLevelTask = rewardService.RewardLevelRequest("sadgsdg");
+                Task<int> rewardLevelTask = rewardService.RewardLevelRequest();
                 int rewardLevel = await rewardLevelTask;
                 rouletteGameUIEventChannel.RaiseOnRewardLevelReceived(rewardLevel);
             }
             catch (Exception e)
             {
-                Debug.LogError($"Spin failed: {e}");
+                Debug.LogError($"Reward Level REquest Failed: {e}");
             }
         }
 
@@ -46,9 +47,9 @@ namespace RouletteGame.Manager
 
             try
             {                
-                Task<RewardData> spinTask = rewardService.SpinRequest("sadgsdg");
-                RewardData response = await spinTask;
-                rouletteGameUIEventChannel.RaiseOnRewardGranted(response);
+                Task<SpinResult> spinTask = rewardService.SpinRequest();
+                SpinResult response = await spinTask;
+                rouletteGameUIEventChannel.RaiseOnRewardGranted(response.rewardData);
             }
             catch (Exception e)
             {

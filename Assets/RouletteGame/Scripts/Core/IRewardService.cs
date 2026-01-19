@@ -7,8 +7,8 @@ namespace RouletteGame.Core
 {
     public interface IRewardService
     {
-        public Task<SpinResult> SpinRequest(string playerId);
-        public Task<int> RewardLevelRequest(string playerId);
+        public Task<SpinResult> SpinRequest();
+        public Task<int> RewardLevelRequest();
 
     }
 }

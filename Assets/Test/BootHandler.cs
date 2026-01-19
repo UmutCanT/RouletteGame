@@ -12,11 +12,12 @@ namespace Test
     /// </summary>
     public class BootHandler : MonoBehaviour
     {
+        private static string TEST_PLAYER_ID = "player123";
         private RouletteGameManager gameManager;
 
         private void Awake()
         {
-            ServiceLocator.Register<IRewardService>(new MockRewardService());
+            ServiceLocator.Register<IRewardService>(new MockRewardService(TEST_PLAYER_ID));
             gameManager = FindAnyObjectByType<RouletteGameManager>().GetComponent<RouletteGameManager>(); // Normally instantiate from prefab
         }
 

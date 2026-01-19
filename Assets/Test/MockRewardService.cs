@@ -35,12 +35,12 @@ namespace Test
             random = new Random();
         }
 
-        public Task<int> RewardLevelRequest(string playerId)
+        public Task<int> RewardLevelRequest()
         {
             return Task.FromResult(playerData.rewardLevel);
         }
 
-        public Task<SpinResult> SpinRequest(string playerId)
+        public Task<SpinResult> SpinRequest()
         {
             var currentRewardRoulette = MockRouletteData.Wheels[playerData.rewardLevel];
 
