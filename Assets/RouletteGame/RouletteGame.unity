@@ -7374,8 +7374,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9858b967a5d986b4faa200b7ab6cd7ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rouletteGameUIEventChannel: {fileID: 0}
-  rouletteSpinButton: {fileID: 0}
+  rouletteGameUIEventChannel: {fileID: 11400000, guid: ebe2b9c5b78e2134ca8acda61641fe9e,
+    type: 2}
+  rouletteSpinButton: {fileID: 1756769833}
 --- !u!1 &1063838642
 GameObject:
   m_ObjectHideFlags: 0

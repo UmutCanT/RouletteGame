@@ -21,7 +21,7 @@ namespace RouletteGame.Manager
 
         private CancellationTokenSource cancellationTokenSource;
 
-        public async void Initialize(string playerID)
+        public async void Initialize()
         {
             rewardService = ServiceLocator.Resolve<IRewardService>();
             rouletteGameUIEventChannel.OnSpinClicked.AddListener(OnSpinClicked);
@@ -34,7 +34,7 @@ namespace RouletteGame.Manager
             }
             catch (Exception e)
             {
-                Debug.LogError($"Reward Level REquest Failed: {e}");
+                Debug.LogError($"Reward Level Request Failed: {e}");
             }
         }
 
