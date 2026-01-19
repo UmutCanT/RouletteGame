@@ -16,7 +16,7 @@ namespace Test
 
         private void Awake()
         {
-            ServiceLocator.Register<IRewardService>(null);
+            ServiceLocator.Register<IRewardService>(new MockRewardService());
             gameManager = FindAnyObjectByType<RouletteGameManager>().GetComponent<RouletteGameManager>(); // Normally instantiate from prefab
         }
 
