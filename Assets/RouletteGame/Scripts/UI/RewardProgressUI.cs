@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,20 +10,29 @@ namespace RouletteGame.UI
 {
     public class RewardProgressUI : MonoBehaviour
     {
-        [SerializeField] private RewardLevelItemUI levelItemPrefab;
+        private const float CONTAINER_START_POSITON_X = 1450f;
+        private const float MOVEMENT_DISTANCE = 100f;
+
         [SerializeField] private Image currentLevelBGImage;
+        [SerializeField] private RectTransform container;
         [SerializeField] private List<RewardLevelItemUI> levelProgressItems;
-        [SerializeField] private RectTransform content;
 
+        private readonly float moveDuration = 0.4f;
+        private readonly Ease moveEase = Ease.OutCubic;
 
-        public void Initialize(int totalLevel)
+        private Tween moveTween;
+
+        public void UpdateProgressBar(int currentLevel)
         {
-            for (int i = 1; i <= totalLevel; i++)
-            {
-                var item = Instantiate(levelItemPrefab, content);
-                item.UpdateLevelText(i);
-                levelProgressItems.Add(item);
-            }
+            float targetX =
+            CONTAINER_START_POSITON_X -
+            (currentLevel - 1) * MOVEMENT_DISTANCE;
+
+            moveTween?.Kill();
+
+            moveTween = container
+                .DOAnchorPosX(targetX, moveDuration)
+                .SetEase(moveEase);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace RouletteGame.UI
     {
         [SerializeField] private RouletteGameUIEventChannelSO rouletteGameUIEventChannel;
         [SerializeField] private Button rouletteSpinButton;
+        [SerializeField] private RewardProgressUI rewardProgressUI;
         
         private void OnEnable()
         {

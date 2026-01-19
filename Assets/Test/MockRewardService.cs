@@ -83,5 +83,10 @@ namespace Test
             PlayerPrefs.SetInt(playerData.playerId, rewardLevel);
             PlayerPrefs.Save();
         }
+
+        public Task<int> RewardMaxLevelRequest()
+        {
+            return Task.FromResult(MockRouletteData.Wheels.Count);
+        }
     }
 }

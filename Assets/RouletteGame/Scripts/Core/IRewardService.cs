@@ -9,6 +9,7 @@ namespace RouletteGame.Core
     {
         public Task<SpinResult> SpinRequest();
         public Task<int> RewardLevelRequest();
+        public Task<int> RewardMaxLevelRequest();
 
     }
 }
