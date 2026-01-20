@@ -68,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 1c60e0b8b927eb4478105f1d6dd14bfd, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -127,8 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15920f3795ea8c4aa2d228a5488e623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardType: 
-  rewardElementIcon: {fileID: 2121819864151241702}
+  rewardType: 0
   rewardElementAmountText: {fileID: 2121819865215224600}
 --- !u!1 &2121819865215224602
 GameObject:
