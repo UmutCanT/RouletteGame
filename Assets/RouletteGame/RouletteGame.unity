@@ -6755,6 +6755,7 @@ MonoBehaviour:
   rouletteSpinButton: {fileID: 1756769833}
   rewardProgressUI: {fileID: 35752493}
   rouletteUI: {fileID: 1701860273}
+  currentRewardsUI: {fileID: 687672818}
 --- !u!1 &1037755230
 GameObject:
   m_ObjectHideFlags: 0
