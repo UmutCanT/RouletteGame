@@ -14,6 +14,7 @@ namespace RouletteGame.UI
         [SerializeField] private Button rouletteSpinButton;
         [SerializeField] private RewardProgressUI rewardProgressUI;
         [SerializeField] private RouletteUI rouletteUI;
+        [SerializeField] private CurrentRewardsUI currentRewardsUI;
 
         private int currentRewardLevel;
 
@@ -48,7 +49,7 @@ namespace RouletteGame.UI
             try
             {
                 await rouletteUI.StopRouletteWheelSpin(FindRewardDataIndex(rewardData.RewardId));
-                //Other sequences too
+                currentRewardsUI.UpdateRewardEntery(rewardData.RewardType);
             }
             catch (Exception e)
             {
