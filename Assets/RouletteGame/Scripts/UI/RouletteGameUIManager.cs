@@ -14,7 +14,9 @@ namespace RouletteGame.UI
         [SerializeField] private Button rouletteSpinButton;
         [SerializeField] private RewardProgressUI rewardProgressUI;
         [SerializeField] private RouletteUI rouletteUI;
-        
+
+        private int currentRewardLevel;
+
         private void OnEnable()
         {
             rouletteGameUIEventChannel.OnRewardLevelReceived.AddListener(RewardLevelChangedUIUpdate);
@@ -32,6 +34,7 @@ namespace RouletteGame.UI
         private void RewardLevelChangedUIUpdate(int rewardLevel)
         {
             Debug.Log("Update Reward Level UI " + rewardLevel);
+            currentRewardLevel = rewardLevel;
             rewardProgressUI.UpdateProgressBar(rewardLevel);
             rouletteUI.UpdateRouletteWheel(rouletteGameWrapper.RouletteData[rewardLevel]);
             rouletteSpinButton.interactable = true;
@@ -44,7 +47,7 @@ namespace RouletteGame.UI
             Debug.Log("RewardGrantedSequence UI " + rewardData.RewardId);
             try
             {
-                await rouletteUI.StopRouletteWheelSpin(rewardData.RewardId);
+                await rouletteUI.StopRouletteWheelSpin(FindRewardDataIndex(rewardData.RewardId));
                 //Other sequences too
             }
             catch (Exception e)
@@ -63,6 +66,19 @@ namespace RouletteGame.UI
             rouletteUI.SpinRouletteWheel();
             rouletteGameUIEventChannel.RaiseOnSpinClicked();
             Debug.Log("OnSpinButtonClick " + rouletteSpinButton.interactable);
+        }
+
+        private int FindRewardDataIndex(string rewardId)
+        {
+            var RouletteElements = rouletteGameWrapper.RouletteData[currentRewardLevel].RouletteElement;
+
+            for (int i = 0; i < RouletteElements.Length; i++)
+            {
+                if (RouletteElements[i].RewardId == rewardId)
+                    return i;
+            }
+
+            return -1;
         }
     }
 }
