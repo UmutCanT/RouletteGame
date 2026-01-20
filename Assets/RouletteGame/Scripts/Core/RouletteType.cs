@@ -1,6 +1,9 @@
-public enum RouletteType
+namespace RouletteGame.Core
 {
-    Bronze,
-    Silver,
-    Gold
+    public enum RouletteType
+    {
+        Bronze,
+        Silver,
+        Gold
+    }
 }

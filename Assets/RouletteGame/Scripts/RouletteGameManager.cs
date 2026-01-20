@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Test;
 using UnityEngine;
@@ -14,26 +15,33 @@ namespace RouletteGame.Manager
         [SerializeField] private RouletteGameUIEventChannelSO rouletteGameUIEventChannel;
 
         private IRewardService rewardService;
-        private bool isRouletteSpinning;
+        private CancellationTokenSource cancellationTokenSource;
 
         public void Initialize()
         {
             rewardService = ServiceLocator.Resolve<IRewardService>();
             rouletteGameUIEventChannel.OnSpinClicked.AddListener(OnSpinClicked);
+            rouletteGameUIEventChannel.OnRewardSequenceFinish.AddListener(UpdateNextRewardLevel);
+
+            UpdateNextRewardLevel();
         }
 
         public async void OnSpinClicked()
         {
-            if (isRouletteSpinning)
-                return;
-
-            isRouletteSpinning = true;
-
+            Debug.LogWarning("Spin Req Start");
             try
             {                
-                Task<RewardData> spinTask = rewardService.SpinRequest("sadgsdg");
-                RewardData response = await spinTask;
-                rouletteGameUIEventChannel.RaiseOnRewardGranted(response);
+                Task<SpinResult> spinTask = rewardService.SpinRequest();
+                SpinResult response = await spinTask;
+                if (response != null)
+                {
+                    Debug.Log(response.ToString());
+                }
+                else
+                {
+                    Debug.Log("response is null");
+                }
+                rouletteGameUIEventChannel.RaiseOnRewardGranted(response.rewardData);
             }
             catch (Exception e)
             {
@@ -41,8 +49,35 @@ namespace RouletteGame.Manager
             }
             finally
             {
-                isRouletteSpinning = false;
+                Debug.LogWarning("Spin Req Finish");
             }
+        }
+
+        private async void UpdateNextRewardLevel()
+        {
+            Debug.LogWarning("Next Reward Req Start");
+            try
+            {
+                Task<int> rewardLevelTask = rewardService.RewardLevelRequest();
+                int rewardLevel = await rewardLevelTask;
+                rouletteGameUIEventChannel.RaiseOnRewardLevelReceived(rewardLevel);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Reward Level Request Failed: {e}");
+            }
+            finally
+            {
+                Debug.LogWarning("Next Reward Req Finish");
+            }
+        }
+
+        private void OnDisable()
+        {
+            rouletteGameUIEventChannel.OnSpinClicked.RemoveListener(OnSpinClicked);
+            rouletteGameUIEventChannel.OnRewardSequenceFinish.RemoveListener(UpdateNextRewardLevel);
+            cancellationTokenSource?.Cancel();
+            cancellationTokenSource?.Dispose();
         }
     }
 }

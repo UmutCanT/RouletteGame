@@ -10,5 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe638b9fd10bdcc4cba60384264b8021, type: 3}
-  m_Name: GoldRewardElement
+  m_Name: 0011_ChestSmall_5
   m_EditorClassIdentifier: 
+  rewardData:
+    RewardId: 0011
+    Amount: 5
+  rewardName: Small Chest
+  rewardIcon: {fileID: 21300000, guid: 95d2b898b36334e4db434e5394bb1402, type: 3}
