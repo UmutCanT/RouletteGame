@@ -21,7 +21,6 @@ namespace Test
             gameManager = FindAnyObjectByType<RouletteGameManager>().GetComponent<RouletteGameManager>(); // Normally instantiate from prefab
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             gameManager.Initialize();

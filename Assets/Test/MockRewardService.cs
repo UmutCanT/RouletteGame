@@ -78,7 +78,7 @@ namespace Test
 
         private void UpdateRewardLevel(int rewardLevel)
         {
-            playerData.rewardLevel = rewardLevel;
+            playerData.rewardLevel = rewardLevel + 1;
 
             PlayerPrefs.SetInt(playerData.playerId, rewardLevel);
             PlayerPrefs.Save();

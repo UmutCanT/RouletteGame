@@ -8,5 +8,7 @@ namespace RouletteGame.Core
     public class RouletteGameWrapperSO : ScriptableObject
     {
         [SerializeField] private RouletteDataSO[] rouletteData;
+
+        public RouletteDataSO[] RouletteData => rouletteData;
     }
 }

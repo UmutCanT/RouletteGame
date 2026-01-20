@@ -22,10 +22,22 @@ namespace Test
                         Weight = 40
                     },
                     new RouletteElement
-                    {                   
-                        Type = RouletteElementType.GameOver,
-                        Weight = 10
-                    }
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
+                        Weight = 40
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
+                        Weight = 40
+                    },
+                    //new RouletteElement
+                    //{                   
+                    //    Type = RouletteElementType.GameOver,
+                    //    Weight = 10
+                    //}
                 }
             },
             new RouletteWheelConfig
@@ -41,10 +53,17 @@ namespace Test
                         Weight = 40
                     },
                     new RouletteElement
-                    {                   
-                        Type = RouletteElementType.GameOver,
-                        Weight = 10
-                    }
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
+                        Weight = 40
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
+                        Weight = 40
+                    },
                 }
             },
             new RouletteWheelConfig
@@ -60,10 +79,17 @@ namespace Test
                         Weight = 40
                     },
                     new RouletteElement
-                    {                   
-                        Type = RouletteElementType.GameOver,
-                        Weight = 10
-                    }
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
+                        Weight = 40
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
+                        Weight = 40
+                    },
                 }
             },
             new RouletteWheelConfig
@@ -72,6 +98,12 @@ namespace Test
                 RewardLevel = 1,
                 Elements = new List<RouletteElement>
                 {
+                   new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
+                        Weight = 40
+                    },
                     new RouletteElement
                     {
                         Type = RouletteElementType.Reward,
@@ -79,10 +111,11 @@ namespace Test
                         Weight = 40
                     },
                     new RouletteElement
-                    {                   
-                        Type = RouletteElementType.GameOver,
-                        Weight = 10
-                    }
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
+                        Weight = 40
+                    },
                 }
             },
         };

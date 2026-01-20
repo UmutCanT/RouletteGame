@@ -11,9 +11,8 @@ namespace RouletteGame.Core
         public UnityEvent<int> OnRewardLevelReceived;
 
         public UnityEvent OnSpinClicked;
-        public UnityEvent OnStartSpin;
         public UnityEvent<RewardData> OnRewardGranted;
-        public UnityEvent OnSpinFinished;
+        public UnityEvent OnRewardSequenceFinish;
 
         public void RaiseOnRewardLevelReceived(int rewardLevel)
         {
@@ -22,12 +21,7 @@ namespace RouletteGame.Core
 
         public void RaiseOnSpinClicked()
         {
-
-        }
-
-        public void RaiseOnStartSpin()
-        {
-
+            OnSpinClicked?.Invoke();
         }
 
         public void RaiseOnRewardGranted(RewardData rewardData)
@@ -35,9 +29,9 @@ namespace RouletteGame.Core
             OnRewardGranted?.Invoke(rewardData);
         }
 
-        public void RaiseOnSpinFinished()
+        public void RaiseOnRewardSequenceFinish()
         {
-
+            OnRewardSequenceFinish?.Invoke();
         }
     }
 }

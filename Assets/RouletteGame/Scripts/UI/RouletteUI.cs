@@ -1,6 +1,7 @@
 using RouletteGame.Core;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,10 @@ namespace RouletteGame.UI
 
         [SerializeField] private List<RouletteElementUI> rouletteElementUIs;
 
+        private bool isSpinning = false;
+
+        public bool IsSpinning => isSpinning;
+
         public void UpdateRouletteWheel(RouletteDataSO rouletteDataSO)
         {
             rouletteSpinWheel.sprite = rouletteDataSO.RouletteSprite;
@@ -24,6 +29,18 @@ namespace RouletteGame.UI
                 RouletteElementDataSO elementData = rouletteDataSO.RouletteElement[i];
                 rouletteElement.UpdateRouletteElementUI(elementData.RewardIcon, elementData.RewardAmount);
             }
+        }
+
+        public void SpinRouletteWheel()
+        {
+            isSpinning = true;
+            //Start Spin animation
+        }
+
+        public async Task StopRouletteWheelSpin(string rewardId)
+        {
+            //Stop spin animation
+            isSpinning = false;
         }
     }
 }

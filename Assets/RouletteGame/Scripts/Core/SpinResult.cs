@@ -6,7 +6,7 @@ using UnityEngine;
 namespace RouletteGame.Core
 {
     [Serializable]
-    public class SpinResult : MonoBehaviour
+    public class SpinResult
     {
         public RewardData rewardData;
         public bool isGameOver;
