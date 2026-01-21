@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardData:
     RewardId: 0005
+    RewardType: 1
     Amount: 10
   rewardName: Gold Coin
   rewardIcon: {fileID: 21300000, guid: 462e2829f5539de4792e806f33ca5b07, type: 3}

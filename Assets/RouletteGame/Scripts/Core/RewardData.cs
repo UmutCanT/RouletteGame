@@ -6,6 +6,7 @@ namespace RouletteGame.Core
     public class RewardData
     {
         public string RewardId;
+        public RewardType RewardType;
         public int Amount;
     }
 }

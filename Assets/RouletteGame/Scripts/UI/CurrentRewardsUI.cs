@@ -1,18 +1,28 @@
+using RouletteGame.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrentRewardsUI : MonoBehaviour
+namespace RouletteGame.UI
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CurrentRewardsUI : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private List<CurrentRewardElementUI> currentRewardElementUIs;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void UpdateRewardEntery(RewardType rewardType)
+        {
+            foreach (var rewardElement in currentRewardElementUIs)
+            {
+                if(rewardElement.RewardType == rewardType)
+                {
+                    if (!rewardElement.isActiveAndEnabled)
+                    {
+                        rewardElement.gameObject.SetActive(true);
+                    }
+                }
+                    
+            }
+        }
     }
 }
