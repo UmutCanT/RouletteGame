@@ -27,6 +27,7 @@ namespace RouletteGame.UI
 
         public void UpdateRouletteWheel(RouletteDataSO rouletteDataSO)
         {
+            rouletteSpinWheel.transform.rotation = Quaternion.identity;
             rouletteSpinWheel.sprite = rouletteDataSO.RouletteSprite;
             rouletteIndicator.sprite = rouletteDataSO.RouletteIndicator;
 
