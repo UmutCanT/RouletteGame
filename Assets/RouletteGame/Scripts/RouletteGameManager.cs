@@ -17,11 +17,12 @@ namespace RouletteGame.Manager
 
         private IRewardService rewardService;
         private CancellationTokenSource cancellationTokenSource;
+        private RewardData lastRewardData;
 
         private void OnDisable()
         {
             rouletteGameUIEventChannel.OnSpinClicked.RemoveListener(OnSpinClicked);
-            rouletteGameUIEventChannel.OnRewardSequenceFinish.RemoveListener(UpdateNextRewardLevel);
+            rouletteGameUIEventChannel.OnRewardSequenceFinish.RemoveListener(OnRewardSequenceFinished);
             gameOverUIEventChannel.OnGiveUpClicked.RemoveListener(OnGiveUpClicked);
             gameOverUIEventChannel.OnReviveWithAdsClicked.RemoveListener(OnReviveWithAdsClicked);
             gameOverUIEventChannel.OnReviveWithGoldClicked.RemoveListener(OnReviveWithGoldClicked);
@@ -34,11 +35,11 @@ namespace RouletteGame.Manager
         {
             rewardService = ServiceLocator.Resolve<IRewardService>();
             rouletteGameUIEventChannel.OnSpinClicked.AddListener(OnSpinClicked);
-            rouletteGameUIEventChannel.OnRewardSequenceFinish.AddListener(UpdateNextRewardLevel);
+            rouletteGameUIEventChannel.OnRewardSequenceFinish.AddListener(OnRewardSequenceFinished);
             gameOverUIEventChannel.OnGiveUpClicked.AddListener(OnGiveUpClicked);
             gameOverUIEventChannel.OnReviveWithAdsClicked.AddListener(OnReviveWithAdsClicked);
             gameOverUIEventChannel.OnReviveWithGoldClicked.AddListener(OnReviveWithGoldClicked);
-
+            lastRewardData = new RewardData();
             UpdateNextRewardLevel();
         }
 
@@ -54,8 +55,14 @@ namespace RouletteGame.Manager
                 if (response.isGameOver)
                 {
                     rouletteGameUIEventChannel.RaiseOnGameOver(response.rewardData);
-                }else
+                }
+                else
+                {
                     rouletteGameUIEventChannel.RaiseOnRewardGranted(response.rewardData);
+                    lastRewardData.RewardId = response.rewardData.RewardId;
+                    lastRewardData.Amount = response.rewardData.Amount;
+                    Debug.LogWarning("LastRewardData " +  lastRewardData.RewardId);
+                }
             }
             catch (Exception e)
             {
@@ -158,6 +165,13 @@ namespace RouletteGame.Manager
             {
                 Debug.LogWarning("Next Reward Req Finish");
             }
-        }      
+        } 
+        
+        private void OnRewardSequenceFinished()
+        {
+            Debug.Log(lastRewardData.Amount + " here");
+            rouletteGameUIEventChannel.RaiseOnUpdateRewardAmount(lastRewardData);
+            UpdateNextRewardLevel();
+        }
     }
 }

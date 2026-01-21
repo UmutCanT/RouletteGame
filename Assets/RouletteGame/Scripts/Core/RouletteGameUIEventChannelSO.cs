@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace RouletteGame.Core
         public UnityEvent<RewardData> OnRewardGranted;
         public UnityEvent OnRewardSequenceFinish;
         public UnityEvent<RewardData> OnGameOver;
+        public UnityEvent<RewardData> OnUpdateRewardAmount;
 
         public void RaiseOnRewardLevelReceived(int rewardLevel)
         {
@@ -38,5 +40,10 @@ namespace RouletteGame.Core
         {
             OnGameOver?.Invoke(rewardData);
         }
+
+        public void RaiseOnUpdateRewardAmount(RewardData rewardData)
+        {
+            OnUpdateRewardAmount?.Invoke(rewardData);
+        }      
     }
 }

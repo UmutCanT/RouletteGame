@@ -25,6 +25,7 @@ namespace RouletteGame.UI
             rouletteGameUIEventChannel.OnRewardLevelReceived.AddListener(RewardLevelChangedUIUpdate);
             rouletteGameUIEventChannel.OnRewardGranted.AddListener(RewardGrantedSequence);
             rouletteGameUIEventChannel.OnGameOver.AddListener(GameOverSequence);
+            rouletteGameUIEventChannel.OnUpdateRewardAmount.AddListener(UpdateCurrentRewardsUI);
             rouletteSpinButton.onClick.AddListener(OnSpinButtonClick);
             gameOverUI.gameObject.SetActive(false);
         }
@@ -34,6 +35,7 @@ namespace RouletteGame.UI
             rouletteGameUIEventChannel.OnRewardLevelReceived.RemoveListener(RewardLevelChangedUIUpdate);
             rouletteGameUIEventChannel.OnRewardGranted.RemoveListener(RewardGrantedSequence);
             rouletteGameUIEventChannel.OnGameOver.RemoveListener(GameOverSequence);
+            rouletteGameUIEventChannel.OnUpdateRewardAmount.RemoveListener(UpdateCurrentRewardsUI);
             rouletteSpinButton.onClick.RemoveListener(OnSpinButtonClick);
         }
 
@@ -72,7 +74,7 @@ namespace RouletteGame.UI
             try
             {
                 await rouletteUI.StopRouletteWheelSpin(FindRewardDataIndex(rewardData.RewardId));
-                currentRewardsUI.UpdateRewardEntery(FindRewardDataType(rewardData.RewardId));
+                currentRewardsUI.ChackRewardElementUIActivation(FindRewardDataType(rewardData.RewardId));
             }
             catch (Exception e)
             {
@@ -89,6 +91,11 @@ namespace RouletteGame.UI
             rouletteSpinButton.interactable = false;
             rouletteUI.SpinRouletteWheel();
             rouletteGameUIEventChannel.RaiseOnSpinClicked();
+        }
+
+        private void UpdateCurrentRewardsUI(RewardData rewardData)
+        {
+            currentRewardsUI.UpdateRewardElementUI(FindRewardDataType(rewardData.RewardId), rewardData.Amount);
         }
 
         private int FindRewardDataIndex(string rewardId)

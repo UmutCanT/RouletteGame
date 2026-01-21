@@ -10,7 +10,7 @@ namespace RouletteGame.UI
     {
         [SerializeField] private List<CurrentRewardElementUI> currentRewardElementUIs;
 
-        public void UpdateRewardEntery(RewardType rewardType)
+        public void ChackRewardElementUIActivation(RewardType rewardType)
         {
             foreach (var rewardElement in currentRewardElementUIs)
             {
@@ -21,7 +21,17 @@ namespace RouletteGame.UI
                         rewardElement.gameObject.SetActive(true);
                     }
                 }
-                    
+            }
+        }
+
+        public void UpdateRewardElementUI(RewardType rewardType, int amount)
+        {
+            foreach (var rewardElement in currentRewardElementUIs)
+            {
+                if (rewardElement.RewardType == rewardType)
+                {
+                    rewardElement.UpdateRewardElementText(amount);
+                }
             }
         }
     }

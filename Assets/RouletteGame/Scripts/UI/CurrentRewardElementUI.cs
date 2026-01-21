@@ -12,11 +12,19 @@ namespace RouletteGame.UI
         [SerializeField] private RewardType rewardType;
         [SerializeField] private TextMeshProUGUI rewardElementAmountText;
 
+        private int amount;
         public RewardType RewardType => rewardType;
+
+        private void OnEnable()
+        {
+            amount = 0;
+        }
 
         public void UpdateRewardElementText(int newAmount)
         {
-            rewardElementAmountText.text =$"x{newAmount}";
+            amount += newAmount;
+            Debug.LogWarning(amount);
+            rewardElementAmountText.text = amount.ToString();
         }
     }
 }

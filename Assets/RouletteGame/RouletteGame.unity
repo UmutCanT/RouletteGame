@@ -6387,7 +6387,7 @@ PrefabInstance:
     - target: {fileID: 2928769304777281207, guid: 628ebd607594be241b47e7c23ca4eec9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2928769304777281207, guid: 628ebd607594be241b47e7c23ca4eec9,
         type: 3}
@@ -8340,8 +8340,8 @@ RectTransform:
   - {fileID: 437757159}
   - {fileID: 467157092}
   - {fileID: 1212389669}
-  - {fileID: 1326812086}
   - {fileID: 881741354}
+  - {fileID: 1326812086}
   - {fileID: 287599329}
   m_Father: {fileID: 873144326}
   m_RootOrder: 1
@@ -8589,7 +8589,7 @@ PrefabInstance:
     - target: {fileID: 2928769304777281207, guid: 628ebd607594be241b47e7c23ca4eec9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2928769304777281207, guid: 628ebd607594be241b47e7c23ca4eec9,
         type: 3}
@@ -10620,8 +10620,8 @@ MonoBehaviour:
   - {fileID: 485275109}
   - {fileID: 467157093}
   - {fileID: 1212389670}
-  - {fileID: 1326812087}
   - {fileID: 1518146899}
+  - {fileID: 1326812087}
   - {fileID: 1140022539}
   initialSpinDuration: 2
   spinSpeedUp: 3
