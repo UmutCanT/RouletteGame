@@ -16,11 +16,11 @@ MonoBehaviour:
   rouletteIndicator: {fileID: 21300000, guid: d540c2a665404664b86bdc6882571d31, type: 3}
   rouletteType: 0
   rouletteElement:
-  - {fileID: 11400000, guid: 49d428d87efd26e45a8eff1bcc0f6b1a, type: 2}
-  - {fileID: 11400000, guid: c0e059d585ca05249b6f8c9d8b85991a, type: 2}
-  - {fileID: 11400000, guid: 6c92c511d5cf29e49a8853476f239eca, type: 2}
   - {fileID: 11400000, guid: 2a05652c55eb0eb409efb1452a20cd57, type: 2}
-  - {fileID: 11400000, guid: c0e059d585ca05249b6f8c9d8b85991a, type: 2}
-  - {fileID: 11400000, guid: 5b825e6cc2741954bb1748c046081956, type: 2}
+  - {fileID: 11400000, guid: a0bd897715c64e74592b8336e86550b5, type: 2}
+  - {fileID: 11400000, guid: 5f34480c4bcf55b40be7b75ed55225e6, type: 2}
+  - {fileID: 11400000, guid: f644c01d344958c408dc967299a3af95, type: 2}
+  - {fileID: 11400000, guid: 0930016ea8e66084a8a646ec0259e503, type: 2}
+  - {fileID: 11400000, guid: 43c908c2af97ad449b5689f1ca24e846, type: 2}
+  - {fileID: 11400000, guid: 8cb08990b85d99249a4aa9fd97883862, type: 2}
   - {fileID: 11400000, guid: 11716fb8a165d034a873274cba3846f4, type: 2}
-  - {fileID: 11400000, guid: 21a4c7b03ab4d5e419b7370e2e96ec8d, type: 2}

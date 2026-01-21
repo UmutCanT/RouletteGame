@@ -889,7 +889,7 @@ namespace Test
                     {
                         Type = RouletteElementType.Reward,
                         Reward = new RewardData { RewardId = "0004", Amount = 5 },
-                        Weight = 30
+                        Weight = 20
                     },
                     new RouletteElement
                     {
@@ -945,7 +945,7 @@ namespace Test
                     {
                         Type = RouletteElementType.Reward,
                         Reward = new RewardData { RewardId = "0004", Amount = 5 },
-                        Weight = 30
+                        Weight = 20
                     },
                     new RouletteElement
                     {
@@ -1001,7 +1001,7 @@ namespace Test
                     {
                         Type = RouletteElementType.Reward,
                         Reward = new RewardData { RewardId = "0004", Amount = 5 },
-                        Weight = 30
+                        Weight = 20
                     },
                     new RouletteElement
                     {
@@ -1057,7 +1057,7 @@ namespace Test
                     {
                         Type = RouletteElementType.Reward,
                         Reward = new RewardData { RewardId = "0004", Amount = 5 },
-                        Weight = 30
+                        Weight = 20
                     },
                     new RouletteElement
                     {
@@ -1169,7 +1169,7 @@ namespace Test
                     {
                         Type = RouletteElementType.Reward,
                         Reward = new RewardData { RewardId = "0023", Amount = 5 },
-                        Weight = 30
+                        Weight = 20
                     },
                     new RouletteElement
                     {
@@ -1225,7 +1225,7 @@ namespace Test
                     {
                         Type = RouletteElementType.Reward,
                         Reward = new RewardData { RewardId = "0023", Amount = 5 },
-                        Weight = 30
+                        Weight = 20
                     },
                     new RouletteElement
                     {
@@ -1281,7 +1281,7 @@ namespace Test
                     {
                         Type = RouletteElementType.Reward,
                         Reward = new RewardData { RewardId = "0023", Amount = 5 },
-                        Weight = 30
+                        Weight = 20
                     },
                     new RouletteElement
                     {
@@ -1337,7 +1337,7 @@ namespace Test
                     {
                         Type = RouletteElementType.Reward,
                         Reward = new RewardData { RewardId = "0023", Amount = 5 },
-                        Weight = 30
+                        Weight = 20
                     },
                     new RouletteElement
                     {
@@ -1409,6 +1409,286 @@ namespace Test
                     },
                 }
             },
+            new RouletteWheelConfig
+            {
+                Type = RouletteType.Bronze,
+                RewardLevel = 26,
+                Elements = new List<RouletteElement>
+                {
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0002", Amount = 10000 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0005", Amount = 10 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0013", Amount = 5 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0015", Amount = 5 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.GameOver,
+                        Reward = new RewardData { RewardId = "0000", Amount = 1 },
+                        Weight = 200
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0006", Amount = 50 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0014", Amount = 10 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0002", Amount = 10 },
+                        Weight = 20
+                    },
+                }
+            },
+            new RouletteWheelConfig
+            {
+                Type = RouletteType.Bronze,
+                RewardLevel = 27,
+                Elements = new List<RouletteElement>
+                {
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0002", Amount = 10000 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0005", Amount = 10 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0013", Amount = 5 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0015", Amount = 5 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.GameOver,
+                        Reward = new RewardData { RewardId = "0000", Amount = 1 },
+                        Weight = 200
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0006", Amount = 50 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0014", Amount = 10 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0002", Amount = 10 },
+                        Weight = 20
+                    },
+                }
+            },
+            new RouletteWheelConfig
+            {
+                Type = RouletteType.Bronze,
+                RewardLevel = 28,
+                Elements = new List<RouletteElement>
+                {
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0002", Amount = 10000 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0005", Amount = 10 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0013", Amount = 5 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0015", Amount = 5 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.GameOver,
+                        Reward = new RewardData { RewardId = "0000", Amount = 1 },
+                        Weight = 200
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0006", Amount = 50 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0014", Amount = 10 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0002", Amount = 10 },
+                        Weight = 20
+                    },
+                }
+            },
+            new RouletteWheelConfig
+            {
+                Type = RouletteType.Bronze,
+                RewardLevel = 29,
+                Elements = new List<RouletteElement>
+                {
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0002", Amount = 10000 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0005", Amount = 10 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0013", Amount = 5 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0015", Amount = 5 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.GameOver,
+                        Reward = new RewardData { RewardId = "0000", Amount = 1 },
+                        Weight = 200
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0006", Amount = 50 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0014", Amount = 10 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0002", Amount = 10 },
+                        Weight = 20
+                    },
+                }
+            },
+            new RouletteWheelConfig
+            {
+                Type = RouletteType.Gold,
+                RewardLevel = 30,
+                Elements = new List<RouletteElement>
+                {
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0006", Amount = 50 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0015", Amount = 5 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0006", Amount = 50 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0024", Amount = 1 },
+                        Weight = 5
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0016", Amount = 10 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0025", Amount = 1 },
+                        Weight = 5
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0003", Amount = 25000 },
+                        Weight = 20
+                    },
+                    new RouletteElement
+                    {
+                        Type = RouletteElementType.Reward,
+                        Reward = new RewardData { RewardId = "0016", Amount = 10 },
+                        Weight = 20
+                    },
+                }
+            }
         };
     }
 }
