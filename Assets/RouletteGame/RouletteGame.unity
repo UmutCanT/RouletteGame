@@ -14569,7 +14569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb24baf8ff4566d478b2f7add6871c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restratButton: {fileID: 617042518}
+  quitButton: {fileID: 617042518}
   backButton: {fileID: 1256181383}
   quitWarningPopUp: {fileID: 1770364057}
   withPunishmentText: {fileID: 184996488}

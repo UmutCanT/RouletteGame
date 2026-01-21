@@ -11,7 +11,6 @@ namespace RouletteGame.UI
     {
         [SerializeField] private RouletteGameWrapperSO rouletteGameWrapper;
         [SerializeField] private RouletteGameUIEventChannelSO rouletteGameUIEventChannel;
-        [SerializeField] private GameOverUIEventChannelSO gameOverUIEventChannel;
         [SerializeField] private Button rouletteSpinButton;
         [SerializeField] private Button quitButton;
         [SerializeField] private RewardProgressUI rewardProgressUI;
@@ -19,6 +18,7 @@ namespace RouletteGame.UI
         [SerializeField] private CurrentRewardsUI currentRewardsUI;
         [SerializeField] private GameOverUI gameOverUI;
         [SerializeField] private AreaLevelIndicatorUI areaLevelIndicatorUI;
+        [SerializeField] private QuitWarningUI quitWarningUI;
 
         private int currentRewardLevel;
 
@@ -28,18 +28,21 @@ namespace RouletteGame.UI
             rouletteGameUIEventChannel.OnRewardGranted.AddListener(RewardGrantedSequence);
             rouletteGameUIEventChannel.OnGameOver.AddListener(GameOverSequence);
             rouletteGameUIEventChannel.OnUpdateRewardAmount.AddListener(UpdateCurrentRewardsUI);
+            rouletteGameUIEventChannel.OnQuitWarningActivated.AddListener(OnQuitWarningActivated);
             rouletteSpinButton.onClick.AddListener(OnSpinButtonClick);
+            quitButton.onClick.AddListener(rouletteGameUIEventChannel.RaiseOnQuit);
             gameOverUI.gameObject.SetActive(false);
         }
-
-
+     
         private void OnDisable()
         {
             rouletteGameUIEventChannel.OnRewardLevelReceived.RemoveListener(RewardLevelChangedUIUpdate);
             rouletteGameUIEventChannel.OnRewardGranted.RemoveListener(RewardGrantedSequence);
             rouletteGameUIEventChannel.OnGameOver.RemoveListener(GameOverSequence);
             rouletteGameUIEventChannel.OnUpdateRewardAmount.RemoveListener(UpdateCurrentRewardsUI);
+            rouletteGameUIEventChannel.OnQuitWarningActivated.RemoveListener(OnQuitWarningActivated);
             rouletteSpinButton.onClick.RemoveListener(OnSpinButtonClick);
+            quitButton.onClick.RemoveListener(rouletteGameUIEventChannel.RaiseOnQuit);
         }
 
         private void RewardLevelChangedUIUpdate(int rewardLevel)
@@ -56,9 +59,9 @@ namespace RouletteGame.UI
             rouletteSpinButton.interactable = true;
         }
 
-        private void QuitWarning()
+        private void OnQuitWarningActivated(bool punishmentStatus)
         {
-            throw new NotImplementedException();
+            quitWarningUI.ShowQuitWarningPopUp(punishmentStatus);
         }
 
         private async void GameOverSequence(RewardData rewardData)

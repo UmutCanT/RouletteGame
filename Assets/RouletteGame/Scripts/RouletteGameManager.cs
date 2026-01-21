@@ -24,19 +24,23 @@ namespace RouletteGame.Manager
             rewardService = ServiceLocator.Resolve<IRewardService>();
             rouletteGameUIEventChannel.OnSpinClicked.AddListener(OnSpinClicked);
             rouletteGameUIEventChannel.OnRewardSequenceFinish.AddListener(OnRewardSequenceFinished);
+            rouletteGameUIEventChannel.OnQuitClicked.AddListener(ActivateQuitWarning);
             gameOverUIEventChannel.OnReviveWithAdsClicked.AddListener(OnReviveWithAdsClicked);
             gameOverUIEventChannel.OnReviveWithGoldClicked.AddListener(OnReviveWithGoldClicked);
+            gameOverUIEventChannel.OnGiveUpClicked.AddListener(ActivateQuitWarning);
             lastRewardData = new RewardData();
             quitPunishment = true;
             UpdateNextRewardLevel();
         }
-
+     
         private void OnDisable()
         {
             rouletteGameUIEventChannel.OnSpinClicked.RemoveListener(OnSpinClicked);
             rouletteGameUIEventChannel.OnRewardSequenceFinish.RemoveListener(OnRewardSequenceFinished);
+            rouletteGameUIEventChannel.OnQuitClicked.RemoveListener(ActivateQuitWarning);
             gameOverUIEventChannel.OnReviveWithAdsClicked.RemoveListener(OnReviveWithAdsClicked);
             gameOverUIEventChannel.OnReviveWithGoldClicked.RemoveListener(OnReviveWithGoldClicked);
+            gameOverUIEventChannel.OnGiveUpClicked.RemoveListener(ActivateQuitWarning);
         }
 
         public async void OnSpinClicked()
@@ -139,6 +143,14 @@ namespace RouletteGame.Manager
             Debug.Log(lastRewardData.Amount + " here");
             rouletteGameUIEventChannel.RaiseOnUpdateRewardAmount(lastRewardData);
             UpdateNextRewardLevel();
+        }
+
+        private void ActivateQuitWarning(bool punishment)
+        {
+            if (punishment)
+                rouletteGameUIEventChannel.RaiseOnQuitWarningActivated(true);
+            else
+                rouletteGameUIEventChannel.RaiseOnQuitWarningActivated(quitPunishment);
         }
     }
 }

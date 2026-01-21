@@ -8,7 +8,7 @@ namespace RouletteGame.Core
     [CreateAssetMenu(fileName = "GameOverUIEventChannelSO", menuName = "Event Channels/Game-over UI ")]
     public class GameOverUIEventChannelSO : ScriptableObject
     {
-        public UnityEvent OnGiveUpClicked;
+        public UnityEvent<bool> OnGiveUpClicked;
         public UnityEvent OnReviveWithAdsClicked;
         public UnityEvent OnReviveWithGoldClicked;
 
@@ -21,7 +21,7 @@ namespace RouletteGame.Core
 
         public void RaiseOnGiveUpClicked()
         {
-            OnGiveUpClicked?.Invoke();
+            OnGiveUpClicked?.Invoke(true);
         }
 
         public void RaiseOnReviceWithAdsClicked()
