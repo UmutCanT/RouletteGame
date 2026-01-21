@@ -15,6 +15,7 @@ namespace RouletteGame.UI
         [SerializeField] private RewardProgressUI rewardProgressUI;
         [SerializeField] private RouletteUI rouletteUI;
         [SerializeField] private CurrentRewardsUI currentRewardsUI;
+        [SerializeField] private GameOverUI gameOverUI;
 
         private int currentRewardLevel;
 
@@ -22,13 +23,16 @@ namespace RouletteGame.UI
         {
             rouletteGameUIEventChannel.OnRewardLevelReceived.AddListener(RewardLevelChangedUIUpdate);
             rouletteGameUIEventChannel.OnRewardGranted.AddListener(RewardGrantedSequence);
+            rouletteGameUIEventChannel.OnGameOver.AddListener(GameOverSequence);
             rouletteSpinButton.onClick.AddListener(OnSpinButtonClick);
+            gameOverUI.gameObject.SetActive(false);
         }
 
         private void OnDisable()
         {
             rouletteGameUIEventChannel.OnRewardLevelReceived.RemoveListener(RewardLevelChangedUIUpdate);
             rouletteGameUIEventChannel.OnRewardGranted.RemoveListener(RewardGrantedSequence);
+            rouletteGameUIEventChannel.OnGameOver.RemoveListener(GameOverSequence);
             rouletteSpinButton.onClick.RemoveListener(OnSpinButtonClick);
         }
 
@@ -42,6 +46,21 @@ namespace RouletteGame.UI
             Debug.Log("Update Reward Level UI " + rouletteSpinButton.interactable);
 
         }
+
+        private async void GameOverSequence(RewardData rewardData)
+        {
+            Debug.Log("RewardGrantedSequence UI " + rewardData.RewardId);
+            try
+            {
+                await rouletteUI.StopRouletteWheelSpin(FindRewardDataIndex(rewardData.RewardId));
+                gameOverUI.gameObject.SetActive(true);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Game-Over sequence failed: {e.StackTrace}");
+            }
+        }
+
 
         private async void RewardGrantedSequence(RewardData rewardData)
         {
@@ -66,7 +85,6 @@ namespace RouletteGame.UI
             rouletteSpinButton.interactable = false;
             rouletteUI.SpinRouletteWheel();
             rouletteGameUIEventChannel.RaiseOnSpinClicked();
-            Debug.Log("OnSpinButtonClick " + rouletteSpinButton.interactable);
         }
 
         private int FindRewardDataIndex(string rewardId)

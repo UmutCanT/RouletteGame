@@ -15,11 +15,17 @@ namespace Test
         {
             public string playerId;
             public int rewardLevel;
+            public int reviveWithGoldChance;
+            public int reviveWithAdsChance;
+            public bool isRevived;
 
-            public MockPlayerData(string playerId, int rewardLevel)
+            public MockPlayerData(string playerId, int rewardLevel, int reviveWithGoldChance, int reviveWithAdsChance)
             {
                 this.playerId = playerId;
                 this.rewardLevel = rewardLevel;
+                this.reviveWithGoldChance = reviveWithGoldChance;
+                this.reviveWithAdsChance = reviveWithAdsChance;
+                isRevived = false;
             }
         }
 
@@ -28,10 +34,7 @@ namespace Test
 
         public MockRewardService(string playerId)
         {
-            if(!PlayerPrefs.HasKey(playerId))
-                PlayerPrefs.SetInt(playerId, 1);
-
-            playerData = new MockPlayerData(playerId, PlayerPrefs.GetInt(playerId, 1));
+            playerData = new MockPlayerData(playerId, 1, 3, 1);
             random = new Random();
         }
 
@@ -44,7 +47,12 @@ namespace Test
         {
             var currentRewardRoulette = MockRouletteData.Wheels[playerData.rewardLevel];
 
-            var pickedRouletteELement = PickWeighted(currentRewardRoulette.Elements);
+            RouletteElement pickedRouletteELement;
+
+            if(playerData.isRevived)
+                pickedRouletteELement = PickWeighted(currentRewardRoulette.Elements);
+            else
+                pickedRouletteELement = PickWeighted(currentRewardRoulette.Elements);
 
             bool isGameOver = pickedRouletteELement.Type == RouletteElementType.GameOver;
             if (!isGameOver)
@@ -79,14 +87,41 @@ namespace Test
         private void UpdateRewardLevel(int rewardLevel)
         {
             playerData.rewardLevel = rewardLevel + 1;
-
-            PlayerPrefs.SetInt(playerData.playerId, rewardLevel);
-            PlayerPrefs.Save();
         }
 
         public Task<int> RewardMaxLevelRequest()
         {
             return Task.FromResult(MockRouletteData.Wheels.Count);
+        }
+
+        public Task<bool> ReviveWithGoldRequest()
+        {
+            if(playerData.reviveWithGoldChance > 0)
+            {
+                playerData.reviveWithGoldChance--;
+                return Task.FromResult(true);
+            }
+
+            return Task.FromResult(false);
+        }
+
+        public Task<bool> ReviveWithAdsRequest()
+        {
+            if (playerData.reviveWithAdsChance > 0)
+            {
+                playerData.reviveWithAdsChance--;
+                return Task.FromResult(true);
+            }
+
+            return Task.FromResult(false);
+        }
+
+        public Task GiveUpRequest()
+        {
+            string playerId = playerData.playerId;
+            playerData = new MockPlayerData(playerId, 1, 3, 1);
+
+            return Task.CompletedTask;
         }
     }
 }

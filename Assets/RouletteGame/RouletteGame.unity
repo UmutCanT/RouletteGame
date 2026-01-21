@@ -7877,6 +7877,7 @@ MonoBehaviour:
   rewardProgressUI: {fileID: 35752493}
   rouletteUI: {fileID: 1701860273}
   currentRewardsUI: {fileID: 687672818}
+  gameOverUI: {fileID: 0}
 --- !u!1 &1037755230
 GameObject:
   m_ObjectHideFlags: 0
