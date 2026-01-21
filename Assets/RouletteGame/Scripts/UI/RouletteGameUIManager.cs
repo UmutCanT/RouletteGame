@@ -38,13 +38,12 @@ namespace RouletteGame.UI
 
         private void RewardLevelChangedUIUpdate(int rewardLevel)
         {
-            Debug.Log("Update Reward Level UI " + rewardLevel);
+            RouletteDataSO rouletteDataSO = rouletteGameWrapper.RouletteData[rewardLevel - 1];
             currentRewardLevel = rewardLevel;
-            rewardProgressUI.UpdateProgressBar(rewardLevel);
-            rouletteUI.UpdateRouletteWheel(rouletteGameWrapper.RouletteData[rewardLevel - 1]);
+            rewardProgressUI.UpdateProgressBar(rewardLevel, rouletteGameWrapper.GetTextColor(rewardLevel),
+                rouletteGameWrapper.GetBGColor(rewardLevel));
+            rouletteUI.UpdateRouletteWheel(rouletteDataSO);
             rouletteSpinButton.interactable = true;
-            Debug.Log("Update Reward Level UI " + rouletteSpinButton.interactable);
-
         }
 
         private async void GameOverSequence(RewardData rewardData)

@@ -43,3 +43,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 273f3344b50befa4195c788205ea0a27, type: 2}
   - {fileID: 11400000, guid: 273f3344b50befa4195c788205ea0a27, type: 2}
   - {fileID: 11400000, guid: 9905db104d8d8444483c878aeff864cf, type: 2}
+  bronzeAreaTextColor: {r: 0, g: 0, b: 0, a: 1}
+  silverAreaTextColor: {r: 1, g: 1, b: 1, a: 1}
+  goldAreaTextColor: {r: 1, g: 1, b: 1, a: 1}
+  bronzeAreaBGColor: {r: 1, g: 1, b: 1, a: 1}
+  silverAreaBGColor: {r: 0, g: 0.60784316, b: 0, a: 1}
+  goldAreaBGColor: {r: 0.827451, g: 0.6862745, b: 0.21568628, a: 1}

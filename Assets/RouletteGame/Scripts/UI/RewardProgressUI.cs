@@ -22,17 +22,25 @@ namespace RouletteGame.UI
 
         private Tween moveTween;
 
-        public void UpdateProgressBar(int currentLevel)
+        public void UpdateProgressBar(int currentLevel, Color textColor, Color bgColor)
         {
+            int index = currentLevel - 1;
             float targetX =
             CONTAINER_START_POSITON_X -
-            (currentLevel - 1) * MOVEMENT_DISTANCE;
+            (index) * MOVEMENT_DISTANCE;
 
             moveTween?.Kill();
 
             moveTween = container
                 .DOAnchorPosX(targetX, moveDuration)
                 .SetEase(moveEase);
+
+            if (index > 0)
+                levelProgressItems[index - 1].BackToOriginalColor();
+
+            levelProgressItems[index].UpdateLevelTextColor(textColor);
+
+            currentLevelBGImage.color = bgColor;
         }
     }
 }

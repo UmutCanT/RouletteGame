@@ -1,4 +1,5 @@
 using RouletteGame.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,17 +11,22 @@ namespace RouletteGame.UI
     {
         [SerializeField] private TextMeshProUGUI levelText;
 
-        public void UpdateLevelText(int level, bool isCurrent, RouletteType rouletteType)
+        private Color originalColor;
+
+        private void OnEnable()
         {
-            levelText.text = level.ToString();
-            levelText.color = rouletteType == RouletteType.Bronze ? Color.black : Color.white;
-            levelText.alpha = isCurrent ? 1 : 0.7f;
-            transform.localScale = isCurrent ? Vector3.one * 1.2f : Vector3.one;
+            originalColor = levelText.color;
         }
 
-        public void UpdateLevelText(int level)
+        public void UpdateLevelTextColor(Color textColor)
         {
-            levelText.text = level.ToString();
+            levelText.color = textColor;
+        }
+
+
+        public void BackToOriginalColor()
+        {
+            UpdateLevelTextColor(originalColor);
         }
     }
 }
