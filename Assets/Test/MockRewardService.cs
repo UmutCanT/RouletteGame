@@ -18,6 +18,7 @@ namespace Test
             public int reviveWithGoldChance;
             public int reviveWithAdsChance;
             public bool isRevived;
+            public bool quitPunishment;
 
             public MockPlayerData(string playerId, int rewardLevel, int reviveWithGoldChance, int reviveWithAdsChance)
             {
@@ -26,6 +27,7 @@ namespace Test
                 this.reviveWithGoldChance = reviveWithGoldChance;
                 this.reviveWithAdsChance = reviveWithAdsChance;
                 isRevived = false;
+                quitPunishment = false;
             }
         }
 
@@ -57,11 +59,23 @@ namespace Test
             else
                 pickedRouletteELement = PickWeighted(currentRewardRoulette.Elements);
 
+
             Debug.Log("Service " + playerData.rewardLevel + " " + pickedRouletteELement.Reward.RewardId + " " + pickedRouletteELement.Type);
 
             bool isGameOver = pickedRouletteELement.Type == RouletteElementType.GameOver;
             if (!isGameOver)
+            {
                 UpdateRewardLevel(playerData.rewardLevel);
+                if (playerData.rewardLevel%5 == 0 || MockRouletteData.Wheels[playerData.rewardLevel - 1].Type != RouletteType.Bronze)
+                {
+                    playerData.quitPunishment = false;
+                }else
+                    playerData.quitPunishment = true;
+            }
+            else
+            {
+                playerData.quitPunishment = true;
+            }
 
             return Task.FromResult(new SpinResult
             {
@@ -153,12 +167,9 @@ namespace Test
             return Task.FromResult((false, playerData.reviveWithAdsChance));
         }
 
-        public Task GiveUpRequest()
+        public Task<bool> CheckQuitPunishmentStatusRequest()
         {
-            string playerId = playerData.playerId;
-            playerData = new MockPlayerData(playerId, 1, 3, 1);
-
-            return Task.CompletedTask;
+            return Task.FromResult(playerData.quitPunishment);
         }
     }
 }

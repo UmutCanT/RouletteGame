@@ -15,6 +15,7 @@ namespace RouletteGame.Core
         public UnityEvent OnRewardSequenceFinish;
         public UnityEvent<RewardData> OnGameOver;
         public UnityEvent<RewardData> OnUpdateRewardAmount;
+        public UnityEvent<bool> OnQuit;
 
         public void RaiseOnRewardLevelReceived(int rewardLevel)
         {
@@ -44,6 +45,11 @@ namespace RouletteGame.Core
         public void RaiseOnUpdateRewardAmount(RewardData rewardData)
         {
             OnUpdateRewardAmount?.Invoke(rewardData);
-        }      
+        }
+
+        public void RaiseOnQuit(bool quitPunishment) 
+        {
+            OnQuit?.Invoke(quitPunishment);
+        }
     }
 }

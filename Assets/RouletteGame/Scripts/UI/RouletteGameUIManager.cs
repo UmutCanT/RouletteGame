@@ -11,7 +11,9 @@ namespace RouletteGame.UI
     {
         [SerializeField] private RouletteGameWrapperSO rouletteGameWrapper;
         [SerializeField] private RouletteGameUIEventChannelSO rouletteGameUIEventChannel;
+        [SerializeField] private GameOverUIEventChannelSO gameOverUIEventChannel;
         [SerializeField] private Button rouletteSpinButton;
+        [SerializeField] private Button quitButton;
         [SerializeField] private RewardProgressUI rewardProgressUI;
         [SerializeField] private RouletteUI rouletteUI;
         [SerializeField] private CurrentRewardsUI currentRewardsUI;
@@ -29,6 +31,7 @@ namespace RouletteGame.UI
             rouletteSpinButton.onClick.AddListener(OnSpinButtonClick);
             gameOverUI.gameObject.SetActive(false);
         }
+
 
         private void OnDisable()
         {
@@ -53,6 +56,11 @@ namespace RouletteGame.UI
             rouletteSpinButton.interactable = true;
         }
 
+        private void QuitWarning()
+        {
+            throw new NotImplementedException();
+        }
+
         private async void GameOverSequence(RewardData rewardData)
         {
             Debug.Log("RewardGrantedSequence UI " + rewardData.RewardId);
@@ -66,7 +74,6 @@ namespace RouletteGame.UI
                 Debug.LogError($"Game-Over sequence failed: {e.StackTrace}");
             }
         }
-
 
         private async void RewardGrantedSequence(RewardData rewardData)
         {

@@ -12,6 +12,6 @@ namespace RouletteGame.Core
         public Task<int> RewardMaxLevelRequest();
         public Task<(bool, int)> ReviveWithGoldRequest();
         public Task<(bool, int)> ReviveWithAdsRequest();
-        public Task GiveUpRequest();
+        public Task<bool> CheckQuitPunishmentStatusRequest();
     }
 }

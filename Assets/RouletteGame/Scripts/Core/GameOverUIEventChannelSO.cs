@@ -12,6 +12,13 @@ namespace RouletteGame.Core
         public UnityEvent OnReviveWithAdsClicked;
         public UnityEvent OnReviveWithGoldClicked;
 
+        /// <summary>
+        /// 1.bool = isRevived
+        /// 2.int = remainingChance
+        /// 3.bool = reviveWithGold
+        /// </summary>
+        public UnityEvent<(bool, int, bool)> OnGameOverRespond;
+
         public void RaiseOnGiveUpClicked()
         {
             OnGiveUpClicked?.Invoke();
@@ -25,6 +32,11 @@ namespace RouletteGame.Core
         public void RaiseOnReviveWithGoldClicked()
         {
             OnReviveWithGoldClicked?.Invoke();
+        }
+
+        public void RaiseOnGameOverRespond(bool isRevived, int remainingChance, bool withGold)
+        {
+            OnGameOverRespond?.Invoke((isRevived, remainingChance, withGold));
         }
     }
 }

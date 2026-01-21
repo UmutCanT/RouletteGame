@@ -15,34 +15,29 @@ namespace RouletteGame.Manager
         [SerializeField] private RouletteGameUIEventChannelSO rouletteGameUIEventChannel;
         [SerializeField] private GameOverUIEventChannelSO gameOverUIEventChannel;
 
-        private IRewardService rewardService;
-        private CancellationTokenSource cancellationTokenSource;
+        private IRewardService rewardService;      
         private RewardData lastRewardData;
-
-        private void OnDisable()
-        {
-            rouletteGameUIEventChannel.OnSpinClicked.RemoveListener(OnSpinClicked);
-            rouletteGameUIEventChannel.OnRewardSequenceFinish.RemoveListener(OnRewardSequenceFinished);
-            gameOverUIEventChannel.OnGiveUpClicked.RemoveListener(OnGiveUpClicked);
-            gameOverUIEventChannel.OnReviveWithAdsClicked.RemoveListener(OnReviveWithAdsClicked);
-            gameOverUIEventChannel.OnReviveWithGoldClicked.RemoveListener(OnReviveWithGoldClicked);
-
-            cancellationTokenSource?.Cancel();
-            cancellationTokenSource?.Dispose();
-        }
-
+        private bool quitPunishment;
+       
         public void Initialize()
         {
             rewardService = ServiceLocator.Resolve<IRewardService>();
             rouletteGameUIEventChannel.OnSpinClicked.AddListener(OnSpinClicked);
             rouletteGameUIEventChannel.OnRewardSequenceFinish.AddListener(OnRewardSequenceFinished);
-            gameOverUIEventChannel.OnGiveUpClicked.AddListener(OnGiveUpClicked);
             gameOverUIEventChannel.OnReviveWithAdsClicked.AddListener(OnReviveWithAdsClicked);
             gameOverUIEventChannel.OnReviveWithGoldClicked.AddListener(OnReviveWithGoldClicked);
             lastRewardData = new RewardData();
+            quitPunishment = true;
             UpdateNextRewardLevel();
         }
 
+        private void OnDisable()
+        {
+            rouletteGameUIEventChannel.OnSpinClicked.RemoveListener(OnSpinClicked);
+            rouletteGameUIEventChannel.OnRewardSequenceFinish.RemoveListener(OnRewardSequenceFinished);
+            gameOverUIEventChannel.OnReviveWithAdsClicked.RemoveListener(OnReviveWithAdsClicked);
+            gameOverUIEventChannel.OnReviveWithGoldClicked.RemoveListener(OnReviveWithGoldClicked);
+        }
 
         public async void OnSpinClicked()
         {
@@ -68,10 +63,6 @@ namespace RouletteGame.Manager
             {
                 Debug.LogError($"Spin failed: {e}");
             }
-            finally
-            {
-                Debug.LogWarning("Spin Req Finish");
-            }
         }
 
         private async void OnReviveWithGoldClicked()
@@ -83,21 +74,18 @@ namespace RouletteGame.Manager
 
                 if (response.Item1)
                 {
+                    gameOverUIEventChannel.RaiseOnGameOverRespond(true, response.Item2, true);
                     UpdateNextRewardLevel();
                 }
                 else
                 {
-                    //CantRevive
+                    gameOverUIEventChannel.RaiseOnGameOverRespond(false, response.Item2, true);
                 }
             }
             catch (Exception e)
             {
-                Debug.LogError($"Spin failed: {e}");
-            }
-            finally
-            {
-                Debug.LogWarning("Spin Req Finish");
-            }
+                Debug.LogError($"OnReviveWithGoldClicked failed: {e}");
+            }          
         }
 
         private async void OnReviveWithAdsClicked()
@@ -109,43 +97,20 @@ namespace RouletteGame.Manager
 
                 if (response.Item1)
                 {
+                    gameOverUIEventChannel.RaiseOnGameOverRespond(true, response.Item2, false);
                     UpdateNextRewardLevel();
                 }
                 else
                 {
-                    //CantRevive
+                    gameOverUIEventChannel.RaiseOnGameOverRespond(false, response.Item2, false);
                 }
             }
             catch (Exception e)
             {
-                Debug.LogError($"Spin failed: {e}");
+                Debug.LogError($"OnReviveWithAdsClicked failed: {e}");
             }
-            finally
-            {
-                Debug.LogWarning("Spin Req Finish");
-            }
-        }
 
-        private async void OnGiveUpClicked()
-        {
-            try
-            {
-                var reviveTask = rewardService.GiveUpRequest();
-                await reviveTask;
-
-                
-
-                //BackToMainMenu
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Spin failed: {e}");
-            }
-            finally
-            {
-                Debug.LogWarning("Spin Req Finish");
-            }
-        }
+        }    
 
         private async void UpdateNextRewardLevel()
         {            
@@ -154,7 +119,9 @@ namespace RouletteGame.Manager
                 Task<int> rewardLevelTask = rewardService.RewardLevelRequest();
                 int rewardLevel = await rewardLevelTask;
 
-                Debug.LogWarning("Next Reward Req Start " + rewardLevel);
+                Task<bool> quitPunishmentCheckTask = rewardService.CheckQuitPunishmentStatusRequest();
+                quitPunishment = await quitPunishmentCheckTask;
+                Debug.LogWarning("Next Reward Req Start " + rewardLevel + " quit punishment " + quitPunishment);
                 rouletteGameUIEventChannel.RaiseOnRewardLevelReceived(rewardLevel);
             }
             catch (Exception e)
