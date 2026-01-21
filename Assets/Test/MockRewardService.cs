@@ -49,8 +49,11 @@ namespace Test
 
             RouletteElement pickedRouletteELement;
 
-            if(playerData.isRevived)
-                pickedRouletteELement = PickWeighted(currentRewardRoulette.Elements);
+            if (playerData.isRevived)
+            {
+                pickedRouletteELement = PickWeightedWithoutGameOver(currentRewardRoulette.Elements);
+                playerData.isRevived = false;
+            }
             else
                 pickedRouletteELement = PickWeighted(currentRewardRoulette.Elements);
 
@@ -63,6 +66,36 @@ namespace Test
                 rewardData = pickedRouletteELement.Reward,
                 isGameOver = isGameOver
             });
+        }
+
+        private RouletteElement PickWeightedWithoutGameOver(List<RouletteElement> elements)
+        {
+            int totalWeight = 0;
+
+            for (int i = 0; i < elements.Count; i++)
+            {
+                var e = elements[i];
+                if (e.Type == RouletteElementType.GameOver)
+                    continue;
+
+                totalWeight += e.Weight;
+            }
+
+            int roll = random.Next(0, totalWeight);
+            int current = 0;
+
+            for (int i = 0; i < elements.Count; i++)
+            {
+                var e = elements[i];
+                if (e.Type == RouletteElementType.GameOver)
+                    continue;
+
+                current += e.Weight;
+                if (roll < current)
+                    return e;
+            }
+
+            return null;
         }
 
         private RouletteElement PickWeighted(List<RouletteElement> elements)
@@ -81,7 +114,7 @@ namespace Test
                     return e;
             }
 
-            return elements[0];
+            return null;
         }
 
         private void UpdateRewardLevel(int rewardLevel)
@@ -99,6 +132,7 @@ namespace Test
             if(playerData.reviveWithGoldChance > 0)
             {
                 playerData.reviveWithGoldChance--;
+                playerData.isRevived = true;
                 return Task.FromResult(true);
             }
 
@@ -110,6 +144,7 @@ namespace Test
             if (playerData.reviveWithAdsChance > 0)
             {
                 playerData.reviveWithAdsChance--;
+                playerData.isRevived = true;
                 return Task.FromResult(true);
             }
 
