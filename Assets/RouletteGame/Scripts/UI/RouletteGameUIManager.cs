@@ -16,6 +16,7 @@ namespace RouletteGame.UI
         [SerializeField] private RouletteUI rouletteUI;
         [SerializeField] private CurrentRewardsUI currentRewardsUI;
         [SerializeField] private GameOverUI gameOverUI;
+        [SerializeField] private AreaLevelIndicatorUI areaLevelIndicatorUI;
 
         private int currentRewardLevel;
 
@@ -43,6 +44,10 @@ namespace RouletteGame.UI
             rewardProgressUI.UpdateProgressBar(rewardLevel, rouletteGameWrapper.GetTextColor(rewardLevel),
                 rouletteGameWrapper.GetBGColor(rewardLevel));
             rouletteUI.UpdateRouletteWheel(rouletteDataSO);
+
+            areaLevelIndicatorUI.UpdateSilverAreaIndicatorText(FindNextSilverAreaLevel(rewardLevel));
+            areaLevelIndicatorUI.UpdateGoldAreaIndicatorText(FindNextGoldAreaLevel(rewardLevel));
+
             rouletteSpinButton.interactable = true;
         }
 
@@ -110,6 +115,36 @@ namespace RouletteGame.UI
             }
 
             return RewardType.None;
+        }
+
+        private int FindNextGoldAreaLevel(int rewardLevel)
+        {
+            int nextLevel = 0;
+            for (int i = 0; i < rouletteGameWrapper.GoldAreas.Count; i++)
+            {
+                int area = rouletteGameWrapper.GoldAreas[i];
+                if (rewardLevel <= area)
+                {
+                    nextLevel = area;
+                    return nextLevel;
+                }
+            }
+            return nextLevel;
+        }
+
+        private int FindNextSilverAreaLevel(int rewardLevel)
+        {
+            int nextLevel = 0;
+            for (int i = 0; i < rouletteGameWrapper.SilverAreas.Count; i++)
+            {
+                int area = rouletteGameWrapper.SilverAreas[i];
+                if (rewardLevel <= area)
+                {
+                    nextLevel = area;
+                    return nextLevel;
+                }
+            }
+            return nextLevel;
         }
     }
 }

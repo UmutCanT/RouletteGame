@@ -49,3 +49,5 @@ MonoBehaviour:
   bronzeAreaBGColor: {r: 1, g: 1, b: 1, a: 1}
   silverAreaBGColor: {r: 0, g: 0.60784316, b: 0, a: 1}
   goldAreaBGColor: {r: 0.827451, g: 0.6862745, b: 0.21568628, a: 1}
+  silverAreas: 01000000050000000a0000000f0000001400000019000000
+  goldAreas: 1e000000

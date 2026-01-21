@@ -16,8 +16,13 @@ namespace RouletteGame.Core
         [SerializeField] private Color bronzeAreaBGColor;
         [SerializeField] private Color silverAreaBGColor;
         [SerializeField] private Color goldAreaBGColor;
+        [Header("Safe Areas")]
+        [SerializeField] private List<int> silverAreas;
+        [SerializeField] private List<int> goldAreas;
 
         public RouletteDataSO[] RouletteData => rouletteData;
+        public List<int> SilverAreas => silverAreas;
+        public List<int> GoldAreas => goldAreas;
 
         public Color GetTextColor(int rewardLevel)
         {
