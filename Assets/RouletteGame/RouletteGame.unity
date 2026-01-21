@@ -5976,6 +5976,8 @@ MonoBehaviour:
   giveUpButton: {fileID: 627143149}
   reviveWithGoldButton: {fileID: 1000697670}
   reviveWithAdsButton: {fileID: 2116549217}
+  reviveWithGoldButtonText: {fileID: 1576222084}
+  reviveWithAdsButtonText: {fileID: 441827288}
   glowImage: {fileID: 390098408}
   flashImage: {fileID: 2072640871}
   shineImage: {fileID: 1739611142}
@@ -7035,7 +7037,9 @@ MonoBehaviour:
     type: 2}
   rouletteGameUIEventChannel: {fileID: 11400000, guid: ebe2b9c5b78e2134ca8acda61641fe9e,
     type: 2}
+  gameOverUIEventChannel: {fileID: 0}
   rouletteSpinButton: {fileID: 1756769833}
+  quitButton: {fileID: 0}
   rewardProgressUI: {fileID: 35752493}
   rouletteUI: {fileID: 1701860273}
   currentRewardsUI: {fileID: 687672818}
