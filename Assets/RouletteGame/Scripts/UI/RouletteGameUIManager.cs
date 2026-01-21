@@ -41,7 +41,7 @@ namespace RouletteGame.UI
             Debug.Log("Update Reward Level UI " + rewardLevel);
             currentRewardLevel = rewardLevel;
             rewardProgressUI.UpdateProgressBar(rewardLevel);
-            rouletteUI.UpdateRouletteWheel(rouletteGameWrapper.RouletteData[rewardLevel]);
+            rouletteUI.UpdateRouletteWheel(rouletteGameWrapper.RouletteData[rewardLevel - 1]);
             rouletteSpinButton.interactable = true;
             Debug.Log("Update Reward Level UI " + rouletteSpinButton.interactable);
 

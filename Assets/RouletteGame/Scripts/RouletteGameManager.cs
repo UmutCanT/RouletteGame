@@ -141,12 +141,13 @@ namespace RouletteGame.Manager
         }
 
         private async void UpdateNextRewardLevel()
-        {
-            Debug.LogWarning("Next Reward Req Start");
+        {            
             try
             {
                 Task<int> rewardLevelTask = rewardService.RewardLevelRequest();
                 int rewardLevel = await rewardLevelTask;
+
+                Debug.LogWarning("Next Reward Req Start " + rewardLevel);
                 rouletteGameUIEventChannel.RaiseOnRewardLevelReceived(rewardLevel);
             }
             catch (Exception e)

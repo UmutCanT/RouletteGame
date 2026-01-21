@@ -11,12 +11,11 @@ namespace RouletteGame.UI
     {
         [SerializeField] private Image rewardIcon;
         [SerializeField] private TextMeshProUGUI rewardAmountText;
-        //[SerializeField] private GameObject specialBackground;
 
         public void UpdateRouletteElementUI(Sprite rewardIconSprite, int rewardAmount)
         {
             rewardIcon.sprite = rewardIconSprite;
-
+            rewardAmountText.gameObject.SetActive(false);
             if (rewardAmount > 1)
             {
                 rewardAmountText.gameObject.SetActive(true);
