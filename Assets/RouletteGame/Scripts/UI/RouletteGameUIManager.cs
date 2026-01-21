@@ -93,7 +93,7 @@ namespace RouletteGame.UI
 
         private int FindRewardDataIndex(string rewardId)
         {
-            var RouletteElements = rouletteGameWrapper.RouletteData[currentRewardLevel].RouletteElement;
+            var RouletteElements = rouletteGameWrapper.RouletteData[currentRewardLevel - 1].RouletteElement;
 
             for (int i = 0; i < RouletteElements.Length; i++)
             {
@@ -106,7 +106,7 @@ namespace RouletteGame.UI
 
         private RewardType FindRewardDataType(string rewardId)
         {
-            var RouletteElements = rouletteGameWrapper.RouletteData[currentRewardLevel].RouletteElement;
+            var RouletteElements = rouletteGameWrapper.RouletteData[currentRewardLevel - 1].RouletteElement;
 
             for (int i = 0; i < RouletteElements.Length; i++)
             {
