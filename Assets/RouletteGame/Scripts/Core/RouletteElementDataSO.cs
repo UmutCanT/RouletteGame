@@ -15,5 +15,6 @@ namespace RouletteGame.Core
         public Sprite RewardIcon => rewardIcon;
         public int RewardAmount => rewardData.Amount;
         public string RewardId => rewardData.RewardId;
+        public RewardType RewardType => rewardData.RewardType;
     }
 }

@@ -16,7 +16,7 @@ namespace RouletteGame.UI
             {
                 if(rewardElement.RewardType == rewardType)
                 {
-                    if (!rewardElement.isActiveAndEnabled)
+                    if (!rewardElement.gameObject.activeSelf)
                     {
                         rewardElement.gameObject.SetActive(true);
                     }

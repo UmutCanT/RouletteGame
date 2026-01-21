@@ -68,7 +68,7 @@ namespace RouletteGame.UI
             try
             {
                 await rouletteUI.StopRouletteWheelSpin(FindRewardDataIndex(rewardData.RewardId));
-                currentRewardsUI.UpdateRewardEntery(rewardData.RewardType);
+                currentRewardsUI.UpdateRewardEntery(FindRewardDataType(rewardData.RewardId));
             }
             catch (Exception e)
             {
@@ -98,6 +98,19 @@ namespace RouletteGame.UI
             }
 
             return -1;
+        }
+
+        private RewardType FindRewardDataType(string rewardId)
+        {
+            var RouletteElements = rouletteGameWrapper.RouletteData[currentRewardLevel].RouletteElement;
+
+            for (int i = 0; i < RouletteElements.Length; i++)
+            {
+                if (RouletteElements[i].RewardId == rewardId)
+                    return RouletteElements[i].RewardType;
+            }
+
+            return RewardType.None;
         }
     }
 }
