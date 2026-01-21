@@ -71,12 +71,12 @@ namespace RouletteGame.Manager
         {
             try
             {
-                Task<bool> reviveTask = rewardService.ReviveWithGoldRequest();
-                bool response = await reviveTask;
+                Task<(bool, int)> reviveTask = rewardService.ReviveWithGoldRequest();
+                (bool, int) response = await reviveTask;
 
-                if (response)
+                if (response.Item1)
                 {
-                    //Continue
+                    UpdateNextRewardLevel();
                 }
                 else
                 {
@@ -97,12 +97,12 @@ namespace RouletteGame.Manager
         {
             try
             {
-                Task<bool> reviveTask = rewardService.ReviveWithAdsRequest();
-                bool response = await reviveTask;
+                Task<(bool, int)> reviveTask = rewardService.ReviveWithAdsRequest();
+                (bool, int) response = await reviveTask;
 
-                if (response)
+                if (response.Item1)
                 {
-                    //Continue
+                    UpdateNextRewardLevel();
                 }
                 else
                 {

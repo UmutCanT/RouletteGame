@@ -10,8 +10,8 @@ namespace RouletteGame.Core
         public Task<SpinResult> SpinRequest();
         public Task<int> RewardLevelRequest();
         public Task<int> RewardMaxLevelRequest();
-        public Task<bool> ReviveWithGoldRequest();
-        public Task<bool> ReviveWithAdsRequest();
+        public Task<(bool, int)> ReviveWithGoldRequest();
+        public Task<(bool, int)> ReviveWithAdsRequest();
         public Task GiveUpRequest();
     }
 }

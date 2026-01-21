@@ -11,7 +11,7 @@ namespace Test
         {
             new RouletteWheelConfig
             {
-                Type = RouletteType.Bronze,
+                Type = RouletteType.Silver,
                 RewardLevel = 1,
                 Elements = new List<RouletteElement>
                 {
@@ -39,85 +39,7 @@ namespace Test
                     //    Weight = 10
                     //}
                 }
-            },
-            new RouletteWheelConfig
-            {
-                Type = RouletteType.Bronze,
-                RewardLevel = 1,
-                Elements = new List<RouletteElement>
-                {
-                    new RouletteElement
-                    {
-                        Type = RouletteElementType.Reward,
-                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
-                        Weight = 40
-                    },
-                    new RouletteElement
-                    {
-                        Type = RouletteElementType.Reward,
-                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
-                        Weight = 40
-                    },
-                    new RouletteElement
-                    {
-                        Type = RouletteElementType.Reward,
-                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
-                        Weight = 40
-                    },
-                }
-            },
-            new RouletteWheelConfig
-            {
-                Type = RouletteType.Bronze,
-                RewardLevel = 1,
-                Elements = new List<RouletteElement>
-                {
-                    new RouletteElement
-                    {
-                        Type = RouletteElementType.Reward,
-                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
-                        Weight = 40
-                    },
-                    new RouletteElement
-                    {
-                        Type = RouletteElementType.Reward,
-                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
-                        Weight = 40
-                    },
-                    new RouletteElement
-                    {
-                        Type = RouletteElementType.Reward,
-                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
-                        Weight = 40
-                    },
-                }
-            },
-            new RouletteWheelConfig
-            {
-                Type = RouletteType.Bronze,
-                RewardLevel = 1,
-                Elements = new List<RouletteElement>
-                {
-                   new RouletteElement
-                    {
-                        Type = RouletteElementType.Reward,
-                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
-                        Weight = 40
-                    },
-                    new RouletteElement
-                    {
-                        Type = RouletteElementType.Reward,
-                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
-                        Weight = 40
-                    },
-                    new RouletteElement
-                    {
-                        Type = RouletteElementType.Reward,
-                        Reward = new RewardData { RewardId = "coin", Amount = 100 },
-                        Weight = 40
-                    },
-                }
-            },
+            },           
         };
     }
 }

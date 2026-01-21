@@ -18,6 +18,7 @@ namespace RouletteGame.Core
         SubmachinePoints,
         SniperPoints,
         Chests,
-        Skins
+        Skins,
+        None
     }
 }

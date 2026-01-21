@@ -127,28 +127,28 @@ namespace Test
             return Task.FromResult(MockRouletteData.Wheels.Count);
         }
 
-        public Task<bool> ReviveWithGoldRequest()
+        public Task<(bool, int)> ReviveWithGoldRequest()
         {
             if(playerData.reviveWithGoldChance > 0)
             {
                 playerData.reviveWithGoldChance--;
                 playerData.isRevived = true;
-                return Task.FromResult(true);
+                return Task.FromResult((true, playerData.reviveWithGoldChance));
             }
 
-            return Task.FromResult(false);
+            return Task.FromResult((false, playerData.reviveWithGoldChance));
         }
 
-        public Task<bool> ReviveWithAdsRequest()
+        public Task<(bool, int)> ReviveWithAdsRequest()
         {
             if (playerData.reviveWithAdsChance > 0)
             {
                 playerData.reviveWithAdsChance--;
                 playerData.isRevived = true;
-                return Task.FromResult(true);
+                return Task.FromResult((true, playerData.reviveWithAdsChance));
             }
 
-            return Task.FromResult(false);
+            return Task.FromResult((false, playerData.reviveWithAdsChance));
         }
 
         public Task GiveUpRequest()
