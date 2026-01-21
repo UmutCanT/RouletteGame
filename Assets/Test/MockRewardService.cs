@@ -45,7 +45,7 @@ namespace Test
 
         public Task<SpinResult> SpinRequest()
         {
-            var currentRewardRoulette = MockRouletteData.Wheels[playerData.rewardLevel];
+            var currentRewardRoulette = MockRouletteData.Wheels[playerData.rewardLevel - 1];
 
             RouletteElement pickedRouletteELement;
 
@@ -56,6 +56,8 @@ namespace Test
             }
             else
                 pickedRouletteELement = PickWeighted(currentRewardRoulette.Elements);
+
+            Debug.Log("Service " + playerData.rewardLevel + " " + pickedRouletteELement.Reward.RewardId + " " + pickedRouletteELement.Type);
 
             bool isGameOver = pickedRouletteELement.Type == RouletteElementType.GameOver;
             if (!isGameOver)
