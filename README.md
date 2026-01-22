@@ -1,1 +1,1 @@
-# RouletteGame
+"This Roulette wheel module was developed as part of the Vertigo Games technical task. Pressing the 'Quit' button resets the game to the starting point. A confirmation popup explicitly informs the player whether their accumulated rewards will be lost or retained upon exiting. The IRewardService was designed with a modular approach, anticipating future integration with online game services or backend servers."
