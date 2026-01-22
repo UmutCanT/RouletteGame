@@ -16,6 +16,16 @@ namespace RouletteGame.UI
         [SerializeField] private TextMeshProUGUI withPunishmentText;
         [SerializeField] private TextMeshProUGUI withoutPunishmentText;
 
+        private void OnValidate()
+        {
+            if (quitButton == null)
+                quitButton = GameObject.Find("ui_quit_warning_quit_button").GetComponent<Button>();
+
+            if (backButton == null)
+                backButton = GameObject.Find("ui_quit_warning_back_button").GetComponent<Button>();
+        }
+
+
         private void OnEnable()
         {
             quitButton.onClick.AddListener(OnQuit);

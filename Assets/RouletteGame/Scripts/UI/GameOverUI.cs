@@ -23,6 +23,18 @@ namespace RouletteGame.UI
         [SerializeField] private Image flashImage;
         [SerializeField] private Image shineImage;
 
+        private void OnValidate()
+        {
+            if (giveUpButton == null)
+                giveUpButton = GameObject.Find("ui_game_over_give_up_button").GetComponent<Button>();
+
+            if (reviveWithGoldButton == null)
+                reviveWithGoldButton = GameObject.Find("ui_game_over_revive_with_gold_button").GetComponent<Button>();
+
+            if (reviveWithAdsButton == null)
+                reviveWithAdsButton = GameObject.Find("ui_game_over_revive_with_ad_button").GetComponent<Button>();
+        }
+
         private void OnEnable()
         {
             gameOverUIEventChannel.OnGameOverRespond.AddListener(OnGameOverRespond);

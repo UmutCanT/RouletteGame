@@ -22,6 +22,16 @@ namespace RouletteGame.UI
 
         private int currentRewardLevel;
 
+        private void OnValidate()
+        {
+            if (rouletteSpinButton == null)
+                rouletteSpinButton = GameObject.FindGameObjectWithTag("SpinButton").GetComponent<Button>();
+
+            if (quitButton == null)
+                quitButton = GameObject.FindGameObjectWithTag("QuitButton").GetComponent<Button>();
+        }
+
+
         private void OnEnable()
         {
             rouletteGameUIEventChannel.OnRewardLevelReceived.AddListener(RewardLevelChangedUIUpdate);
