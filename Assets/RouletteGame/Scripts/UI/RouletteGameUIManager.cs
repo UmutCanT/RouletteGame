@@ -57,6 +57,9 @@ namespace RouletteGame.UI
             areaLevelIndicatorUI.UpdateGoldAreaIndicatorText(FindNextGoldAreaLevel(rewardLevel));
 
             rouletteSpinButton.interactable = true;
+
+            if(!quitButton.gameObject.activeSelf)
+                quitButton.gameObject.SetActive(true);
         }
 
         private void OnQuitWarningActivated(bool punishmentStatus)
@@ -71,6 +74,7 @@ namespace RouletteGame.UI
             {
                 await rouletteUI.StopRouletteWheelSpin(FindRewardDataIndex(rewardData.RewardId));
                 gameOverUI.gameObject.SetActive(true);
+                quitButton.gameObject.SetActive(false);
             }
             catch (Exception e)
             {

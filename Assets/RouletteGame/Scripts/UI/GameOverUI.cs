@@ -33,6 +33,7 @@ namespace RouletteGame.UI
 
         private void OnDisable()
         {
+            gameOverUIEventChannel.OnGameOverRespond.RemoveListener(OnGameOverRespond);
             giveUpButton.onClick.RemoveListener(gameOverUIEventChannel.RaiseOnGiveUpClicked);
             reviveWithGoldButton.onClick.RemoveListener(gameOverUIEventChannel.RaiseOnReviveWithGoldClicked);
             reviveWithAdsButton.onClick.RemoveListener(gameOverUIEventChannel.RaiseOnReviceWithAdsClicked);
