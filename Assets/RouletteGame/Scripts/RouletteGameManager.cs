@@ -18,6 +18,7 @@ namespace RouletteGame.Manager
         private IRewardService rewardService;      
         private RewardData lastRewardData;
         private bool quitPunishment;
+        private int maxLevel = 0;
        
         public void Initialize()
         {
@@ -30,6 +31,7 @@ namespace RouletteGame.Manager
             gameOverUIEventChannel.OnGiveUpClicked.AddListener(ActivateQuitWarning);
             lastRewardData = new RewardData();
             quitPunishment = true;
+            GetMaxRewardLevel();
             UpdateNextRewardLevel();
         }
      
@@ -125,16 +127,33 @@ namespace RouletteGame.Manager
 
                 Task<bool> quitPunishmentCheckTask = rewardService.CheckQuitPunishmentStatusRequest();
                 quitPunishment = await quitPunishmentCheckTask;
-                Debug.LogWarning("Next Reward Req Start " + rewardLevel + " quit punishment " + quitPunishment);
-                rouletteGameUIEventChannel.RaiseOnRewardLevelReceived(rewardLevel);
+
+                if(rewardLevel <= maxLevel)
+                {
+                    Debug.LogWarning("Next Reward Req Start " + rewardLevel + " quit punishment " + quitPunishment);
+                    rouletteGameUIEventChannel.RaiseOnRewardLevelReceived(rewardLevel);
+                }
+                else
+                {
+                    FindAnyObjectByType<BootHandler>().GetComponent<BootHandler>().PlayerClaimedAllRewards();
+                }
             }
             catch (Exception e)
             {
                 Debug.LogError($"Reward Level Request Failed: {e}");
             }
-            finally
+        } 
+
+        private async void GetMaxRewardLevel()
+        {            
+            try
             {
-                Debug.LogWarning("Next Reward Req Finish");
+                Task<int> rewardLevelTask = rewardService.RewardLevelRequest();
+                maxLevel = await rewardLevelTask;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Reward Level Request Failed: {e}");
             }
         } 
         

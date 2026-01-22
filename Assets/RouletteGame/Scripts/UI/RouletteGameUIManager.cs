@@ -74,7 +74,7 @@ namespace RouletteGame.UI
             {
                 await rouletteUI.StopRouletteWheelSpin(FindRewardDataIndex(rewardData.RewardId));
                 gameOverUI.gameObject.SetActive(true);
-                quitButton.gameObject.SetActive(false);
+                HideQuitButton();
             }
             catch (Exception e)
             {
@@ -166,6 +166,11 @@ namespace RouletteGame.UI
                 }
             }
             return nextLevel;
+        }
+
+        public void HideQuitButton()
+        {
+            quitButton.gameObject.SetActive(false);
         }
     }
 }

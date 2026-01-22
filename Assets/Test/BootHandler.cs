@@ -1,6 +1,7 @@
 using RouletteGame.Core;
 using RouletteGame.Manager;
 using RouletteGame.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace Test
     public class BootHandler : MonoBehaviour
     {
         private static string TEST_PLAYER_ID = "player123";
-        private RouletteGameManager gameManager;
+        private RouletteGameManager gameManager;     
 
         private void Awake()
         {
@@ -24,6 +25,12 @@ namespace Test
         void Start()
         {
             gameManager.Initialize();
+        }
+
+        public void PlayerClaimedAllRewards()
+        {
+            FindAnyObjectByType<QuitWarningUI>().GetComponent<QuitWarningUI>().ShowWithOnlyQuitOption();
+            FindAnyObjectByType<RouletteGameUIManager>().GetComponent<RouletteGameUIManager>().HideQuitButton();
         }
     }
 }

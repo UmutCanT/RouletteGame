@@ -44,5 +44,13 @@ namespace RouletteGame.UI
         {
             SceneManager.LoadScene(0);//Normally this should be in scene Management Service
         }
+
+        public void ShowWithOnlyQuitOption()
+        {
+            quitWarningPopUp.SetActive(true);
+            withPunishmentText.gameObject.SetActive(false);
+            withoutPunishmentText.gameObject.SetActive(true);
+            backButton.gameObject.SetActive(false);
+        }
     }
 }
