@@ -148,7 +148,7 @@ namespace RouletteGame.Manager
         {            
             try
             {
-                Task<int> rewardLevelTask = rewardService.RewardLevelRequest();
+                Task<int> rewardLevelTask = rewardService.RewardMaxLevelRequest();
                 maxLevel = await rewardLevelTask;
             }
             catch (Exception e)
